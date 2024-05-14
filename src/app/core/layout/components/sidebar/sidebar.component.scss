@@ -26,6 +26,8 @@
   width: max-content;
   height: max-content;
   font-size: 48px;
+  animation: pulse 10s linear infinite;
+  -webkit-animation: pulse 10s linear infinite;
 }
 .menu-item {
   color: #ffffff;
@@ -60,6 +62,19 @@
 .menu-icon {
   margin-left: auto;
   margin-right: 5px;
+}
+
+@keyframes pulse {
+  0% {
+    color: #d81d61;
+  }
+  50% {
+    color: #d81d61;
+    opacity: 0.6; /* Adjust the opacity as desired */
+  }
+  100% {
+    color: #d81d61;
+  }
 }
 
 // old styles
