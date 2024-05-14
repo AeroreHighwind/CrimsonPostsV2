@@ -9,7 +9,9 @@
         <ng-container *ngFor="let item of menuItems">
           <mat-grid-tile class="menu-item">
             <span class="item-content">
-              {{ item.title }}
+              <span class="item-title">
+                {{ item.title }}
+              </span>
               <mat-icon
                 class="menu-icon"
                 aria-hidden="false"
