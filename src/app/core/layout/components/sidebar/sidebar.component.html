@@ -9,9 +9,17 @@
           fontIcon="developer_board"
         />
       </span>
-      <mat-slide-toggle [(ngModel)]="enableNotifications" color="primary"
-        >Enable notifications</mat-slide-toggle
-      >
+      <div class="slider-container">
+        <mat-slide-toggle [(ngModel)]="enableNotifications" color="primary"
+          >Enable notifications</mat-slide-toggle
+        >
+      </div>
+      <div class="slider-container">
+        <mat-slide-toggle [(ngModel)]="connectionStatus" color="primary"
+          >Status:
+          {{ connectionStatus ? "Online" : "Offline" }}</mat-slide-toggle
+        >
+      </div>
       <mat-grid-list cols="1" rowHeight="3:1" class="grid-list">
         <ng-container *ngFor="let item of menuItems">
           <mat-grid-tile class="menu-item">

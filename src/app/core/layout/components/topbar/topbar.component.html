@@ -1,13 +1,16 @@
-<mat-toolbar>
+<mat-toolbar class="top-bar">
   <ng-container *ngIf="currentUser()?.photoURL">
     <div class="avatar-container">
-      <img
-        class="avatar"
-        [src]="currentUser()?.photoURL"
-        alt="avatar"
-        srcset=""
-      />
       <span class="username">{{ currentUser()?.displayName }}</span>
+      <div class="user-status">
+        <div class="status-indicator"></div>
+        <img
+          class="avatar"
+          [src]="currentUser()?.photoURL"
+          alt="avatar"
+          srcset=""
+        />
+      </div>
     </div>
   </ng-container>
 </mat-toolbar>

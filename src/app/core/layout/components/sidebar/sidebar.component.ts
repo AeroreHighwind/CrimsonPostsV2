@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
 
   public menuItems = MenuConfiguration
   public enableNotifications: boolean = true
+  public connectionStatus: boolean = true
 
   ngOnInit(): void {
     this.toggle()
