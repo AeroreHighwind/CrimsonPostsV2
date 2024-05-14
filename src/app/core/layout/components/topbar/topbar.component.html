@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <ng-container *ngIf="currentUser()?.photoURL">
+    <div class="avatar-container">
+      <img
+        class="avatar"
+        [src]="currentUser()?.photoURL"
+        alt="avatar"
+        srcset=""
+      />
+      <span class="username">{{ currentUser()?.displayName }}</span>
+    </div>
+  </ng-container>
+</mat-toolbar>

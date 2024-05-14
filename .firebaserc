@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "crimson-posts": {
+      "hosting": {
+        "crimson-posts-v2": [
+          "crimson-posts"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "crimson-posts"
+  }
+}

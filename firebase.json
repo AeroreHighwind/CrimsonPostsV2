@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "crimson-posts-v2",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
