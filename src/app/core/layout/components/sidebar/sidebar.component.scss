@@ -15,6 +15,18 @@
 .grid-list {
   margin-top: 10px;
 }
+.menu-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.menu-logo {
+  width: max-content;
+  height: max-content;
+  font-size: 48px;
+}
 .menu-item {
   color: #ffffff;
   font-size: 14px;

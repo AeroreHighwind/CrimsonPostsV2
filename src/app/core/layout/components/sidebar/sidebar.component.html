@@ -1,7 +1,14 @@
 <mat-drawer-container class="sidenav-container">
   <mat-drawer #sidebar class="main-sidenav" mode="side">
     <div class="sidenav-content">
-      <h1>USERNAME</h1>
+      <span class="menu-logo-container">
+        <mat-icon
+          class="menu-logo"
+          aria-hidden="false"
+          aria-label="settings"
+          fontIcon="developer_board"
+        />
+      </span>
       <mat-slide-toggle [(ngModel)]="enableNotifications" color="primary"
         >Enable notifications</mat-slide-toggle
       >
@@ -15,7 +22,7 @@
               <mat-icon
                 class="menu-icon"
                 aria-hidden="false"
-                aria-label="settings"
+                aria-label="button"
                 [fontIcon]="item.icon"
               />
             </span>
