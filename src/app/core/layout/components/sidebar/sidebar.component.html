@@ -2,24 +2,23 @@
   <mat-drawer #sidebar class="main-sidenav" mode="side">
     <div class="sidenav-content">
       <h1>USERNAME</h1>
-      <mat-slide-toggle [(ngModel)]="enableNotifications"
+      <mat-slide-toggle [(ngModel)]="enableNotifications" color="primary"
         >Enable notifications</mat-slide-toggle
       >
       <mat-grid-list cols="1" rowHeight="3:1" class="grid-list">
-        <mat-grid-tile class="menu-item">
-          <span class="item-content">
-            Account settings
-            <mat-icon
-              class="menu-icon"
-              aria-hidden="false"
-              aria-label="settings"
-              fontIcon="settings"
-            />
-          </span>
-        </mat-grid-tile>
-        <mat-grid-tile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
+        <ng-container *ngFor="let item of menuItems">
+          <mat-grid-tile class="menu-item">
+            <span class="item-content">
+              {{ item.title }}
+              <mat-icon
+                class="menu-icon"
+                aria-hidden="false"
+                aria-label="settings"
+                [fontIcon]="item.icon"
+              />
+            </span>
+          </mat-grid-tile>
+        </ng-container>
       </mat-grid-list>
     </div>
   </mat-drawer>

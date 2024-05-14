@@ -3,6 +3,7 @@ import { MaterialModule } from '../../../../modules/material/material.module';
 import { MatDrawer } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MenuConfiguration } from '../../../config/menu.config';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class SidebarComponent implements OnInit {
   @ViewChild('sidebar', { static: true }) sidebarRef!: MatDrawer
-  public enableNotifications = true
+
+  public menuItems = MenuConfiguration
+  public enableNotifications: boolean = true
 
   ngOnInit(): void {
     this.toggle()
