@@ -5,11 +5,11 @@ import { User } from '@angular/fire/auth';
   providedIn: 'root',
 })
 export class AuthService {
-  userSignal = signal<User | null>(null);
+  public userSignal = signal<User | null>(null);
   constructor() {
     this.userSignal.set({
       displayName: "Aerore Highwind",
-      photoURL: "https://firebasestorage.googleapis.com/v0/b/crimson-posts.appspot.com/o/profile.jpeg?alt=media&token=f9262f1c-1dc4-4038-9356-9455adce8cd7"
+      photoURL: "https://firebasestorage.googleapis.com/v0/b/crimson-posts.appspot.com/o/emi%20hasegawa_small.jpg?alt=media&token=f96dd737-f902-4453-9932-b862b412ecc6"
     } as User)
   }
 }
