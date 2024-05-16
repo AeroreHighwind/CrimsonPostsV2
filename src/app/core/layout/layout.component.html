@@ -1,4 +1,17 @@
-<app-topbar />
-<app-sidebar />
 <app-spinner />
-<app-footer />
+<div class="layout-wrapper">
+  <div class="layout-topbar-wrapper">
+    <app-topbar />
+  </div>
+  <div class="layout-sidebar-wrapper">
+    <app-sidebar />
+  </div>
+  <div class="layout-main" [ngClass]="{ 'sidebar-active': 'sidebarActive()' }">
+    <div class="layout-main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  <!-- <div class="layout-footer-wrapper">
+    <app-footer />
+  </div> -->
+</div>

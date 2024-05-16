@@ -1,0 +1,33 @@
+.layout-wrapper {
+  .layout-topbar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .layout-sidebar-wrapper {
+    position: fixed;
+    // height: calc(100vh - 128px);
+    height: calc(100vh - 64px);
+
+    top: 64px;
+    left: 0px;
+  }
+  .layout-footer-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+  .layout-main {
+    padding-top: 64px;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 100vh;
+  }
+  .sidebar-active {
+    margin-left: 181px;
+  }
+}

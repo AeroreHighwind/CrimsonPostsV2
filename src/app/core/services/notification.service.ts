@@ -7,16 +7,23 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 export class NotificationService {
 
   private _snackBarConf: MatSnackBarConfig = {
-    duration: 2000,
+
     horizontalPosition: 'end',
     verticalPosition: 'top',
-    panelClass: ['custom-snackbar']
+    panelClass: ['custom-snackbar'],
   }
   constructor(private _snackBar: MatSnackBar) { }
 
-  triggerNotification(title: string, action?: string, aditionalConfig?: MatSnackBarConfig) {
-    this._snackBar.open(title, action, {
-      ...this._snackBarConf, ...aditionalConfig
-    });
+  triggerNotification(message: string,
+    appearance: 'fill' | 'outline' | 'soft' = 'soft',
+    type: 'info' | 'success' | 'error' = 'info', duration?: number,): void {
+
+    const config: MatSnackBarConfig = {
+      duration: duration,
+      verticalPosition: 'top',
+      horizontalPosition: 'right',
+      panelClass: [`alert-type-${appearance}-${type}`]
+    };
+    this._snackBar.open(message, '', config);
   }
 }
