@@ -4,6 +4,24 @@ html,
 body {
   height: 100%;
 }
+html {
+  /* Snackbar container */
+  --mdc-snackbar-container-color: transparent;
+  --mdc-snackbar-container-shape: 0px;
+
+  /* Supporting text */
+  --mdc-snackbar-supporting-text-color: rgba(66, 66, 66, 0.87);
+  --mdc-snackbar-supporting-text-font: Roboto, sans-serif;
+  --mdc-snackbar-supporting-text-line-height: 20px;
+  --mdc-snackbar-supporting-text-size: 14px;
+  --mdc-snackbar-supporting-text-weight: 400;
+
+  /* Snackbar button */
+  --mat-snack-bar-button-color: rgba(0, 0, 0, 0.87);
+  .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    box-shadow: none;
+  }
+}
 
 body {
   margin: 0;

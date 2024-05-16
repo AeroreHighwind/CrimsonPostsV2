@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { NotificationComponent } from '../generic/notification/notification.component';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,25 @@ export class NotificationService {
   }
   constructor(private _snackBar: MatSnackBar) { }
 
-  triggerNotification(message: string,
-    appearance: 'fill' | 'outline' | 'soft' = 'soft',
-    type: 'info' | 'success' | 'error' = 'info', duration?: number,): void {
+  //   triggerNotification(message: string,
+  //     appearance: 'fill' | 'outline' | 'soft' = 'soft',
+  //     type: 'info' | 'success' | 'error' = 'info', duration?: number,): void {
 
-    const config: MatSnackBarConfig = {
-      duration: duration,
-      verticalPosition: 'top',
-      horizontalPosition: 'right',
-      panelClass: [`alert-type-${appearance}-${type}`]
-    };
-    this._snackBar.open(message, '', config);
+  //     const config: MatSnackBarConfig = {
+  //       duration: duration,
+  //       verticalPosition: 'top',
+  //       horizontalPosition: 'right',
+  //       panelClass: [`alert-type-${appearance}-${type}`]
+  //     };
+  //     this._snackBar.open(message, '', config);
+  //   }
+
+
+  triggerNotification(message: string) {
+    this._snackBar.openFromComponent(NotificationComponent, {
+      data: { message },
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
   }
 }

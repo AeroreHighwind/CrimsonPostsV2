@@ -12,7 +12,7 @@ import { NotificationService } from './core/services/notification.service';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    // this._notifications.triggerNotification("test", 'soft', 'success')
+    this._notifications.triggerNotification("test WITH A LONG TEXT TO SEE WHAT IT HAPPENS, IT SEEMS TO BE RESPONSIVE")
   }
   title = 'crimson-posts-v2';
   private _notifications = inject(NotificationService)
