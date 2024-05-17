@@ -26,6 +26,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-width: 100vh;
+    transition: margin-left 0.3s ease;
   }
   .sidebar-active {
     margin-left: 192px;
