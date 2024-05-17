@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild, computed, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild, computed, inject } from '@angular/core';
 import { MaterialModule } from '../../../../modules/material/material.module';
 import { MatDrawer } from '@angular/material/sidenav';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MenuConfiguration } from '../../../config/menu.config';
+import { LayoutService } from '../../services/layout.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,17 +15,21 @@ import { MenuConfiguration } from '../../../config/menu.config';
 })
 export class SidebarComponent implements OnInit {
   @ViewChild('sidebar', { static: true }) sidebarRef!: MatDrawer
+  private _layout = inject(LayoutService)
+  private _cdRef = inject(ChangeDetectorRef)
+  public isActive = this._layout.sidebarActive
 
   public menuItems = MenuConfiguration
   public enableNotifications: boolean = true
   public connectionStatus: boolean = true
 
   ngOnInit(): void {
-    this.toggle()
+    this._cdRef.detectChanges()
   }
 
   toggle() {
-    this.sidebarRef.toggle()
+    this.isActive.update((value) => !value)
+    this._cdRef.detectChanges()
   }
 
   get isOpen() {
