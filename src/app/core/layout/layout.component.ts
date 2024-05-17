@@ -16,7 +16,6 @@ import { LayoutService } from './services/layout.service';
 })
 export class LayoutComponent {
   private _layoutService = inject(LayoutService)
-
   public sidebarActive: Signal<boolean> = computed(() => this._layoutService.sidebarActive())
 
 

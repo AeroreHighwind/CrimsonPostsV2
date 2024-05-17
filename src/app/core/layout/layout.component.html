@@ -6,7 +6,7 @@
   <div class="layout-sidebar-wrapper">
     <app-sidebar />
   </div>
-  <div class="layout-main" [ngClass]="{ 'sidebar-active': 'sidebarActive()' }">
+  <div class="layout-main" [ngClass]="{ 'sidebar-active': sidebarActive() }">
     <div class="layout-main-content">
       <router-outlet></router-outlet>
     </div>
