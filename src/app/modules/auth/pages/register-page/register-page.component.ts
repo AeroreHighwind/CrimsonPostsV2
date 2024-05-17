@@ -1,8 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { MaterialModule } from '../../../material/material.module';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { BaseFormPage } from '../../../../core/classes/base-form-page.class';
+import { NotificationService } from '../../../../core/services/notification.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -19,10 +21,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrl: './register-page.component.scss'
 })
 export class RegisterPageComponent {
-  matcher = new MyErrorStateMatcher();
-  private _fb = inject(FormBuilder)
-  public formGroup = this._fb.group({
-    email: ["", Validators.required],
-    password: ["", Validators.required]
-  })
+  public group: FormGroup
+  public matcher = new ErrorStateMatcher()
+  constructor(private _fb: FormBuilder, private _notifications: NotificationService) {
+
+    this.group = _fb.group({
+      email: [''],
+      password: [''],
+    })
+  }
+
 }
