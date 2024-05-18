@@ -13,9 +13,9 @@ export class FirestoreManager {
         return addDoc(collectionRef, dto);
     }
 
-    public async update<T>(model: typeof BaseModel, id: string, dto: any): Promise<void> {
-        const docRef = doc(this._firestore, `${model.getModelName()}/${id}`)
-        return updateDoc(docRef, { ...dto });
+    public async update<T extends DocumentData>(model: typeof BaseModel, id: string, dto: WithFieldValue<T>): Promise<void> {
+        const docRef = doc(this._firestore, `${model.getModelName()}/${id}`) as DocumentReference<T>;
+        return updateDoc(docRef, dto);
     }
 
     public async findOne<T>(model: typeof BaseModel, id: string): Promise<DocumentSnapshot> {
@@ -28,7 +28,7 @@ export class FirestoreManager {
         return collectionData(collectionRef, { idField: 'id' }) as Observable<T[]>;
     }
 
-    public async public<T>(model: typeof BaseModel, id: string): Promise<void> {
+    public async remove(model: typeof BaseModel, id: string): Promise<void> {
         const docRef = doc(this._firestore, `${model.getModelName()}/${id}`)
         return await deleteDoc(docRef)
     }

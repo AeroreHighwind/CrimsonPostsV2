@@ -7,7 +7,7 @@
 
 .sidenav-container {
   height: calc(100vh - 64px);
-  width: min-content;
+  max-width: min-content;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
 .main-sidenav {
