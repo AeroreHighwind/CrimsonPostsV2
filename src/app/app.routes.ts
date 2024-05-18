@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
-import { authRoutes } from './modules/auth/auth.routes';
 
 export const routes: Routes = [
-    { path: "auth", children: authRoutes }
+    //Temporal until main view implemented
+    { path: '', redirectTo: 'auth', pathMatch: 'full' },
+    {
+        path: 'auth',
+        loadChildren: () => import('./modules/auth/auth.routes').then(m => m.authRoutes)
+    },
+    { path: '**', redirectTo: 'auth' }
 ];

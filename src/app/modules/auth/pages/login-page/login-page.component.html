@@ -1,0 +1,49 @@
+<div class="main-page">
+  <div class="main-container">
+    <div class="img-container">
+      <img src="assets/img/butterfly.png" alt="" srcset="" />
+    </div>
+    <div class="form-container">
+      <h1 class="text-primary">Login</h1>
+      <form class="register-form" [formGroup]="group">
+        <mat-form-field class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            formControlName="email"
+            [errorStateMatcher]="errorMatcher"
+            placeholder="Ex. pat@example.com"
+          />
+          @if (group.controls['email'].hasError('email') &&
+          !group.controls['email'].hasError('required')) {
+          <mat-error>Please enter a valid email address</mat-error>
+          } @if (group.controls['email'].hasError('required')) {
+          <mat-error>Email is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input
+            type="password"
+            matInput
+            [formGroup]="group"
+            formControlName="password"
+            [errorStateMatcher]="errorMatcher"
+            placeholder="password"
+          />
+          @if (group.controls['email'].hasError('email') &&
+          !group.controls['email'].hasError('required')) {
+          <mat-error>Please enter a valid email address</mat-error>
+          } @if (group.controls['email'].hasError('required')) {
+          <mat-error>Email is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+        <div class="btn-container">
+          <button mat-raised-button color="primary">Login</button>
+          <button mat-stroked-button color="accent">Sign-up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

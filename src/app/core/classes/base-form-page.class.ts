@@ -2,11 +2,13 @@ import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { NotificationService } from "../services/notification.service";
 import { FirestoreManager } from "./firestore-manager.class";
+import { BaseModel } from "./base-model.class";
 
 
 export abstract class BaseFormPage {
     private _formGroup!: FormGroup
     private _errorMatcher = new ErrorStateMatcher()
+    private _modelClass!: typeof BaseModel;
 
     constructor(
         private __fb: FormBuilder,
@@ -19,6 +21,9 @@ export abstract class BaseFormPage {
             this.__notifications.triggerNotification("Error")
             return
         }
+        if (event.id) return this.firestore.update(this.modelClass, event.id, event)
+
+        return this.firestore.create(this.modelClass, event);
     }
 
     get formBuilder() {
@@ -39,6 +44,18 @@ export abstract class BaseFormPage {
 
     get contols() {
         return this._formGroup.controls
+    }
+
+    get firestore() {
+        return this.__firestoreManager
+    }
+
+    get modelClass() {
+        return this._modelClass;
+    }
+
+    set modelClass(modelClass: typeof BaseModel) {
+        this._modelClass = modelClass;
     }
 
 }

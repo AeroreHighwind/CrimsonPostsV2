@@ -1,5 +1,5 @@
 import { Firestore, collection, collectionData, deleteDoc, doc, updateDoc } from '@angular/fire/firestore';
-import { DocumentData, DocumentReference, DocumentSnapshot, addDoc, getDoc } from 'firebase/firestore';
+import { CollectionReference, DocumentData, DocumentReference, DocumentSnapshot, WithFieldValue, addDoc, getDoc } from 'firebase/firestore';
 import { Observable } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { BaseModel } from './base-model.class';
@@ -8,8 +8,8 @@ import { BaseModel } from './base-model.class';
 export class FirestoreManager {
     private _firestore = inject(Firestore)
 
-    public async create<T>(model: typeof BaseModel, dto: DocumentReference<Partial<T>>): Promise<DocumentReference> {
-        const collectionRef = collection(this._firestore, model.getModelName())
+    public async create<T extends DocumentData>(model: typeof BaseModel, dto: WithFieldValue<T>) {
+        const collectionRef = collection(this._firestore, model.getModelName()) as CollectionReference<T>;
         return addDoc(collectionRef, dto);
     }
 
