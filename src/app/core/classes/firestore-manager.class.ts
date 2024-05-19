@@ -18,9 +18,9 @@ export class FirestoreManager {
         return updateDoc(docRef, dto);
     }
 
-    public async findOne<T>(model: typeof BaseModel, id: string): Promise<DocumentSnapshot> {
-        const docRef = doc(this._firestore, `${model.getModelName()}/${id}`)
-        return await getDoc(docRef)
+    public async findOne<T extends DocumentData>(model: typeof BaseModel, id: string): Promise<DocumentSnapshot<T>> {
+        const docRef = doc(this._firestore, `${model.getModelName()}/${id}`) as DocumentReference<T>;
+        return await getDoc(docRef);
     }
 
     public findAll<T>(model: typeof BaseModel): Observable<T[]> {
