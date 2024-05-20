@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { NotificationService } from "../services/notification.service";
 import { FirestoreManager } from "./firestore-manager.class";
@@ -7,6 +7,7 @@ import { BaseModel } from "./base-model.class";
 
 export abstract class BaseFormPage {
     private _formGroup!: FormGroup
+    private _formGroupValidators?: Validators[]
     private _errorMatcher = new ErrorStateMatcher()
     private _modelClass!: typeof BaseModel;
 

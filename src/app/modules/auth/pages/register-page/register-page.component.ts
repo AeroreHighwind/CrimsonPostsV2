@@ -22,12 +22,22 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterPageComponent {
   public group: FormGroup
+  public optionalGroup: FormGroup
   public matcher = new ErrorStateMatcher()
+
   constructor(private _fb: FormBuilder, private _notifications: NotificationService) {
 
     this.group = _fb.group({
-      email: [''],
-      password: [''],
+      username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(12)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+      password1: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]],
+    })
+
+    this.optionalGroup = _fb.group({
+      img: ["",],
+      location: [""],
+      phone: [""]
     })
   }
 

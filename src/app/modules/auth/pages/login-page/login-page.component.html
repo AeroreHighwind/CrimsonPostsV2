@@ -34,14 +34,23 @@
           />
           @if (group.controls['email'].hasError('email') &&
           !group.controls['email'].hasError('required')) {
-          <mat-error>Please enter a valid email address</mat-error>
+          <mat-error>Please enter your password</mat-error>
           } @if (group.controls['email'].hasError('required')) {
           <mat-error>Email is <strong>required</strong></mat-error>
           }
         </mat-form-field>
         <div class="btn-container">
-          <button mat-raised-button color="primary">Login</button>
-          <button mat-stroked-button color="accent">Sign-up</button>
+          <button mat-raised-button color="primary" (click)="submit($event)">
+            Login
+          </button>
+          <button
+            mat-stroked-button
+            color="accent"
+            [routerLink]="'/auth/sign-up'"
+            routerLinkActive="router-link-active"
+          >
+            Sign-up
+          </button>
         </div>
       </form>
     </div>

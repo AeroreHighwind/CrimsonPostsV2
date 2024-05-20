@@ -1,0 +1,97 @@
+<div class="principal-page">
+  <div class="main-container">
+    <mat-stepper [linear]="false" #stepper>
+      <mat-step [stepControl]="group">
+        <form [formGroup]="group">
+          <ng-template matStepLabel>Required information</ng-template>
+          <div class="form-controls">
+            <mat-form-field>
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="Ex. myUsername123"
+                formControlName="username"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                formControlName="email"
+                placeholder="Ex. john@due.com"
+                required
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                formControlName="password"
+                placeholder="Enter your password"
+                required
+                type="password"
+              />
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Repeat password</mat-label>
+              <input
+                matInput
+                formControlName="password1"
+                placeholder="Enter your password again"
+                required
+                type="password"
+              />
+            </mat-form-field>
+          </div>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="optionalGroup" label="Optional information">
+        <form [formGroup]="optionalGroup">
+          <div class="form-group">
+            <div class="form-controls">
+              <mat-form-field>
+                <mat-label>Profile img</mat-label>
+                <input
+                  matInput
+                  formControlName="img"
+                  placeholder="Ex. https://myimg.com/image.jpg"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Location</mat-label>
+                <input
+                  matInput
+                  formControlName="location"
+                  placeholder="Ex. Argentina,Cordoba"
+                />
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Phone number</mat-label>
+                <input
+                  matInput
+                  formControlName="phone"
+                  placeholder="Ex. +54351000000"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <h1 class="text-primary">
+          You are now done. Thank you for joining us!
+        </h1>
+        <h3 class="text-white">You will be redirected automatically</h3>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>

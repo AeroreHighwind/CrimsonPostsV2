@@ -9,6 +9,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
+import { MatStepperModule } from '@angular/material/stepper';
+
 @NgModule({
   exports: [
     MatButtonModule,
@@ -21,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatInputModule,
+    MatStepperModule
   ],
 })
 export class MaterialModule { }

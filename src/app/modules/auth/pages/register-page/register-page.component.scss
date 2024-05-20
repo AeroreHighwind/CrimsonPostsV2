@@ -1,0 +1,18 @@
+@import "../../../../core/utils/_variables.scss";
+.text-primary {
+  color: $color-primary;
+}
+.text-white {
+  color: #ffffff;
+}
+.main-container {
+  max-width: 750px;
+  justify-content: center;
+}
+.form-controls {
+  justify-content: center;
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
