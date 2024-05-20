@@ -5,6 +5,8 @@ import { FormBuilder, FormControl, FormGroup, FormGroupDirective, FormsModule, N
 import { ErrorStateMatcher } from '@angular/material/core';
 import { BaseFormPage } from '../../../../core/classes/base-form-page.class';
 import { NotificationService } from '../../../../core/services/notification.service';
+import { AuthService } from '../../services/auth.service';
+import { UserRegisterDto } from '../../interfaces/user.register.dto';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -21,6 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrl: './register-page.component.scss'
 })
 export class RegisterPageComponent {
+  private _auth = inject(AuthService)
   public group: FormGroup
   public optionalGroup: FormGroup
   public matcher = new ErrorStateMatcher()
@@ -41,4 +44,14 @@ export class RegisterPageComponent {
     })
   }
 
+  public async submit() {
+    if (this.group.invalid || this.optionalGroup.invalid) return
+    const formData = this.group.value
+    const registerData: UserRegisterDto = {
+      username: formData.username,
+      password: formData.password,
+      email: formData.email
+    }
+    await this._auth.register(registerData)
+  }
 }

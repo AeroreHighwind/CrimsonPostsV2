@@ -5,9 +5,24 @@
 .text-white {
   color: #ffffff;
 }
+.text-accent {
+  color: map-get($red-palette, 400);
+}
 .main-container {
-  max-width: 750px;
+  display: flex;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+}
+.stepper-container {
+  height: 440px;
+  width: 750px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  height: 100%;
 }
 .form-controls {
   justify-content: center;
@@ -15,4 +30,8 @@
   display: flex;
   flex-direction: column;
   max-width: 300px;
+  margin-bottom: auto;
+}
+.form-buttons {
+  margin-top: auto;
 }

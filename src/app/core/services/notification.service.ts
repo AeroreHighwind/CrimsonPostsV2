@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { NotificationComponent } from '../generic/notification/notification.component';
 
+declare type AlertType = 'success' | 'error' | 'warning' | 'info'
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
-
   private _snackBarConf: MatSnackBarConfig = {
-
     horizontalPosition: 'end',
     verticalPosition: 'top',
     panelClass: ['custom-snackbar'],
@@ -29,11 +28,15 @@ export class NotificationService {
   //   }
 
 
-  triggerNotification(message: string) {
+  triggerNotification(message: string, type: AlertType) {
     this._snackBar.openFromComponent(NotificationComponent, {
       data: { message },
       horizontalPosition: 'center',
-      verticalPosition: 'top'
+      verticalPosition: 'top',
+      panelClass: type,
+      duration: 2500
     });
   }
+
 }
+

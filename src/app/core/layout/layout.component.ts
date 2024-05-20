@@ -6,6 +6,8 @@ import { SpinnerComponent } from '../utils/spinner/spinner.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LayoutService } from './services/layout.service';
+import { AuthService } from '../../modules/auth/services/auth.service';
+import { User, UserInfo } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +18,8 @@ import { LayoutService } from './services/layout.service';
 })
 export class LayoutComponent {
   private _layoutService = inject(LayoutService)
+  private _auth = inject(AuthService)
   public sidebarActive: Signal<boolean> = computed(() => this._layoutService.sidebarActive())
-
+  public isAuthenticated: Signal<UserInfo | null> = computed(() => this._auth.userSignal())
 
 }

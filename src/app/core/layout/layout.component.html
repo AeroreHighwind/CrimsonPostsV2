@@ -1,12 +1,14 @@
 <app-spinner />
 <div class="layout-wrapper">
   <div class="layout-topbar-wrapper">
-    <app-topbar />
+    <ng-container *ngIf="isAuthenticated()">
+      <app-topbar />
+    </ng-container>
   </div>
   <div class="layout-sidebar-wrapper">
-    <app-sidebar />
+    <ng-container *ngIf="isAuthenticated()"> <app-sidebar /></ng-container>
   </div>
-  <div class="layout-main" [ngClass]="{ 'sidebar-active': sidebarActive() }">
+  <div class="layout-main" [ngClass]="{ 'sidebar-active': sidebarActive() && isAuthenticated() }">
     <div class="layout-main-content">
       <router-outlet></router-outlet>
     </div>
