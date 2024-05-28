@@ -1,7 +1,6 @@
 import { Injectable, Signal, computed, inject, signal } from '@angular/core';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
-import { User, UserInfo } from '@angular/fire/auth';
-import { Router } from '@angular/router';
+import { UserInfo } from '@angular/fire/auth';
 import { NotificationService } from '../../../core/services/notification.service';
 import { UserRegisterDto } from '../interfaces/user.register.dto';
 import { UserLoginDto } from '../interfaces/user.login.dto';
@@ -11,7 +10,6 @@ import { UserLoginDto } from '../interfaces/user.login.dto';
 })
 export class AuthService {
   private _userSignal = signal<UserInfo | null>(null);
-  private _router = inject(Router);
   private _firebaseAuthService = inject(AngularFireAuth);
   private _notifications = inject(NotificationService)
 
@@ -29,37 +27,61 @@ export class AuthService {
     try {
       const { email, password } = user;
       await this._firebaseAuthService.createUserWithEmailAndPassword(email, password)
-      this._notifications.triggerNotification("Register successful", 'success')
+      this._notifications.successNotification("Register successful")
     } catch (error) {
-      this._notifications.triggerNotification("Register failed", 'error')
+      this._notifications.errorNotification("Register failed")
     }
   }
   // Login with email and password
-  public async login(user: UserLoginDto): Promise<void> {
+  public async login(user: UserLoginDto): Promise<boolean> {
     const { email, password } = user;
-    return this._firebaseAuthService.signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        if (userCredential.user) {
-          this._userSignal.set(userCredential.user)
-        }
-        this.observeUserState()
-        this._router.navigateByUrl('/posts')
-      })
-      .catch((error) => this._notifications.triggerNotification("Login failed", 'error'))
+
+    try {
+      const userCredential = await this._firebaseAuthService.signInWithEmailAndPassword(email, password);
+      if (userCredential.user) {
+        this._userSignal.set(userCredential.user);
+      }
+
+      this.observeUserState();
+      return true;
+
+    } catch (error) {
+      this._notifications.errorNotification("Login failed");
+      return false;
+    }
   }
 
-  public logout() {
-    return this._firebaseAuthService.signOut().then(() => {
-      localStorage.clear()
-      this._router.navigateByUrl('/auth/login')
-    })
+  // public async login(user: UserLoginDto) {
+  //   const { email, password } = user;
+  //   return this._firebaseAuthService.signInWithEmailAndPassword(email, password)
+  //     .then((userCredential) => {
+  //       if (userCredential.user) {
+  //         this._userSignal.set(userCredential.user)
+  //       }
+  //       this.observeUserState()
+  //       return true;
+  //     })
+  //     .catch((error) => {
+  //       this._notifications.errorNotification(error)
+  //       return false
+  //     })
+  // }
 
+  public async logout(): Promise<void> {
+    try {
+      await this._firebaseAuthService.signOut()
+      this._userSignal.set(null)
+    } catch (error) {
+      this._notifications.errorNotification("Error in sign out")
+    }
   }
 
-  public observeUserState() {
-    this._firebaseAuthService.authState.subscribe(() => {
-      this._router.navigateByUrl("/posts")
-    })
+
+  public observeUserState(): void {
+    this._firebaseAuthService.authState.subscribe()
+    // this._firebaseAuthService.authState.subscribe(() => {
+    //   this._router.navigateByUrl("/posts")
+    // })
   }
 
   get userSignal(): Signal<UserInfo | null> {

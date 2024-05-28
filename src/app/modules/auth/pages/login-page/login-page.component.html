@@ -5,7 +5,7 @@
     </div>
     <div class="form-container">
       <h1 class="text-primary">Login</h1>
-      <form class="register-form" [formGroup]="group">
+      <form class="register-form" [formGroup]="formGroup">
         <mat-form-field class="full-width">
           <mat-label>Email</mat-label>
           <input
@@ -15,10 +15,10 @@
             [errorStateMatcher]="errorMatcher"
             placeholder="Ex. pat@example.com"
           />
-          @if (group.controls['email'].hasError('email') &&
-          !group.controls['email'].hasError('required')) {
+          @if (formGroup.controls['email'].hasError('email') &&
+          !formGroup.controls['email'].hasError('required')) {
           <mat-error>Please enter a valid email address</mat-error>
-          } @if (group.controls['email'].hasError('required')) {
+          } @if (formGroup.controls['email'].hasError('required')) {
           <mat-error>Email is <strong>required</strong></mat-error>
           }
         </mat-form-field>
@@ -27,15 +27,15 @@
           <input
             type="password"
             matInput
-            [formGroup]="group"
+            [formGroup]="formGroup"
             formControlName="password"
             [errorStateMatcher]="errorMatcher"
             placeholder="password"
           />
-          @if (group.controls['email'].hasError('email') &&
-          !group.controls['email'].hasError('required')) {
+          @if (formGroup.controls['email'].hasError('email') &&
+          !formGroup.controls['email'].hasError('required')) {
           <mat-error>Please enter your password</mat-error>
-          } @if (group.controls['email'].hasError('required')) {
+          } @if (formGroup.controls['email'].hasError('required')) {
           <mat-error>Email is <strong>required</strong></mat-error>
           }
         </mat-form-field>

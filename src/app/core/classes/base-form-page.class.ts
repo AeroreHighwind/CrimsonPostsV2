@@ -19,7 +19,7 @@ export abstract class BaseFormPage {
 
     protected async submit(event: any) {
         if (this._formGroup.invalid) {
-            this.__notifications.triggerNotification("Error", 'error')
+            this.__notifications.errorNotification("Submitted data is invalid")
             return
         }
         if (event.id) return this.firestore.update(this.modelClass, event.id, event)

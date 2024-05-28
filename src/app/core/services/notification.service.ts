@@ -28,15 +28,20 @@ export class NotificationService {
   //   }
 
 
-  triggerNotification(message: string, type: AlertType) {
+  private triggerNotification(message: string, title: string, type: AlertType) {
     this._snackBar.openFromComponent(NotificationComponent, {
-      data: { message },
+      data: { title, message },
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: type,
       duration: 2500
     });
   }
-
+  public successNotification(message: string, title: string = 'Operation successful') {
+    this.triggerNotification(message, title, 'success')
+  }
+  public errorNotification(message: string, title: string = 'An error ocurred') {
+    this.triggerNotification(message, title, 'error')
+  }
 }
 

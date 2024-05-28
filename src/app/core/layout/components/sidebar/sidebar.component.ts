@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MenuConfiguration } from '../../../config/menu.config';
 import { LayoutService } from '../../services/layout.service';
+import { AuthService } from '../../../../modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,6 +18,7 @@ export class SidebarComponent implements OnInit {
   @ViewChild('sidebar', { static: true }) sidebarRef!: MatDrawer
   private _layout = inject(LayoutService)
   private _cdRef = inject(ChangeDetectorRef)
+  private _auth = inject(AuthService)
   public isActive = this._layout.sidebarActive
 
   public menuItems = MenuConfiguration
@@ -27,12 +29,18 @@ export class SidebarComponent implements OnInit {
     this._cdRef.detectChanges()
   }
 
-  toggle() {
+  toggle(): void {
     this.isActive.update((value) => !value)
     this._cdRef.detectChanges()
   }
 
-  get isOpen() {
+  public logout(): void {
+    this._auth.logout()
+  }
+
+
+  get isOpen(): boolean {
     return this.sidebarRef.opened
   }
+
 }

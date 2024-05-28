@@ -5,6 +5,6 @@ export const MenuConfiguration: MenuItem[] = [
     { title: "My posts", icon: "description" },
     { title: "My comments", icon: "forum" },
     { title: "Contacts", icon: "groups" },
-    { title: "Logout", icon: "logout" },
+    { title: "Logout", icon: "logout", action: 'logout' },
     { title: "Account settings", icon: "settings" },
 ]
