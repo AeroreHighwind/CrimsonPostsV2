@@ -1,5 +1,7 @@
 $text-success: #22c55e;
-$text-warning: #cc8925;
+$text-warning: #eab308;
+$text-error: #ea0808;
+// $text-warning: #cc8925;
 // $text-warning: #E8B30B;
 $text-white: #ffffff;
 
@@ -18,10 +20,15 @@ $text-white: #ffffff;
   }
   &-warning {
     @extend .notification;
-    // background-color: rgba(76, 175, 80, 0.5);
     background-color: rgba(197, 194, 34, 0.16);
     color: $text-success;
     border: 1px solid rgba(21, 128, 61, 0.36);
+  }
+  &-error {
+    @extend .notification;
+    background-color: rgba(197, 34, 34, 0.16);
+    color: $text-error;
+    border: 1px solid rgba(128, 21, 21, 0.36);
   }
 }
 

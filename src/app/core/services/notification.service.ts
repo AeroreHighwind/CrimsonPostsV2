@@ -30,11 +30,11 @@ export class NotificationService {
 
   private triggerNotification(message: string, title: string, type: AlertType) {
     this._snackBar.openFromComponent(NotificationComponent, {
-      data: { title, message },
+      data: { title, message, type },
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: type,
-      duration: 2500
+      duration: 20000
     });
   }
   public successNotification(message: string, title: string = 'Operation successful') {
