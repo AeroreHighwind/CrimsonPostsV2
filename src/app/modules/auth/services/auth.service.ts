@@ -4,6 +4,7 @@ import { UserInfo } from '@angular/fire/auth';
 import { NotificationService } from '../../../core/services/notification.service';
 import { UserRegisterDto } from '../interfaces/user.register.dto';
 import { UserLoginDto } from '../interfaces/user.login.dto';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,8 @@ import { UserLoginDto } from '../interfaces/user.login.dto';
 export class AuthService {
   private _userSignal = signal<UserInfo | null>(null);
   private _firebaseAuthService = inject(AngularFireAuth);
-  private _notifications = inject(NotificationService)
+  private _notifications = inject(NotificationService);
+  private _router = inject(Router)
 
   constructor() {
     this._firebaseAuthService.authState.subscribe((user) => {
@@ -26,10 +28,12 @@ export class AuthService {
   public async register(user: UserRegisterDto) {
     try {
       const { email, password } = user;
-      await this._firebaseAuthService.createUserWithEmailAndPassword(email, password)
+      const res = await this._firebaseAuthService.createUserWithEmailAndPassword(email, password)
       this._notifications.successNotification("Register successful")
+      return res
     } catch (error) {
       this._notifications.errorNotification("Register failed")
+      return null
     }
   }
   // Login with email and password
@@ -80,7 +84,7 @@ export class AuthService {
   public observeUserState(): void {
     this._firebaseAuthService.authState.subscribe()
     // this._firebaseAuthService.authState.subscribe(() => {
-    //   this._router.navigateByUrl("/posts")
+    //   this._router.navigateByUrl("/home")
     // })
   }
 

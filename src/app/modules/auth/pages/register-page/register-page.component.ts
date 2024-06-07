@@ -7,6 +7,8 @@ import { BaseFormPage } from '../../../../core/classes/base-form-page.class';
 import { NotificationService } from '../../../../core/services/notification.service';
 import { AuthService } from '../../services/auth.service';
 import { UserRegisterDto } from '../../interfaces/user.register.dto';
+import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -24,6 +26,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterPageComponent {
   private _auth = inject(AuthService)
+  private _router = inject(Router)
+  private _titleService = inject(Title)
   public group: FormGroup
   public optionalGroup: FormGroup
   public matcher = new ErrorStateMatcher()
@@ -42,6 +46,8 @@ export class RegisterPageComponent {
       location: [""],
       phone: [""]
     })
+
+    this._titleService.setTitle("Sign-up")
   }
 
   public async submit() {
@@ -53,5 +59,6 @@ export class RegisterPageComponent {
       email: formData.email
     }
     await this._auth.register(registerData)
+    this._router.navigateByUrl("home")
   }
 }

@@ -5,5 +5,4 @@ export class BaseModel {
     public static getModelName() {
         return Reflect.getMetadata(MODEL_NAME, this, MODEL_NAME);
     }
-
 }

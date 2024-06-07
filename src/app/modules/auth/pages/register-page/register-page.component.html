@@ -1,6 +1,9 @@
 <div class="main-page">
+  <button mat-stroked-button color="accent">
+    <mat-icon fontIcon="arrow_back"></mat-icon> Go to login
+  </button>
   <div class="main-container">
-    <mat-stepper [linear]="false" #stepper class="stepper-container">
+    <mat-stepper [linear]="true" #stepper class="stepper-container">
       <mat-step [stepControl]="group">
         <form [formGroup]="group" class="form">
           <ng-template matStepLabel>Required information</ng-template>
@@ -45,7 +48,9 @@
             </mat-form-field>
           </div>
           <div>
-            <button mat-button matStepperNext (click)="submit()">Finish</button>
+            <button mat-stroked-button color="primary" matStepperNext>
+              Next
+            </button>
           </div>
         </form>
       </mat-step>
@@ -81,14 +86,20 @@
           </div>
           <div class="form-buttons">
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button matStepperNext>Next</button>
+            <button
+              mat-raised-button
+              color="primary"
+              matStepperNext
+              (click)="submit()"
+            >
+              Finish
+            </button>
           </div>
         </form>
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Done</ng-template>
         <h1 class="text-accent">You are now done. Thank you for joining us!</h1>
-        <h3 class="text-white">You will be redirected automatically</h3>
       </mat-step>
     </mat-stepper>
   </div>

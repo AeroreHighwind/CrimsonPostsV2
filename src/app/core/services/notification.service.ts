@@ -34,7 +34,7 @@ export class NotificationService {
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: type,
-      duration: 20000
+      duration: 2000
     });
   }
   public successNotification(message: string, title: string = 'Operation successful') {

@@ -42,8 +42,9 @@ export class SidebarComponent implements OnInit {
     if (item.url) return this.navigate(item.url)
   }
 
-  public logout(): void {
-    this._auth.logout()
+  public async logout() {
+    await this._auth.logout()
+    this._router.navigateByUrl('/auth')
   }
 
 
