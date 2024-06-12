@@ -3,6 +3,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { NotificationComponent } from '../generic/notification/notification.component';
 
 declare type AlertType = 'success' | 'error' | 'warning' | 'info'
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,25 +13,19 @@ export class NotificationService {
     verticalPosition: 'top',
     panelClass: ['custom-snackbar'],
   }
+
+  private _alertIconMap: { [key in AlertType]: string } = {
+    success: 'check_circle',
+    error: 'error',
+    warning: 'warning',
+    info: 'info'
+  }
   constructor(private _snackBar: MatSnackBar) { }
 
-  //   triggerNotification(message: string,
-  //     appearance: 'fill' | 'outline' | 'soft' = 'soft',
-  //     type: 'info' | 'success' | 'error' = 'info', duration?: number,): void {
-
-  //     const config: MatSnackBarConfig = {
-  //       duration: duration,
-  //       verticalPosition: 'top',
-  //       horizontalPosition: 'right',
-  //       panelClass: [`alert-type-${appearance}-${type}`]
-  //     };
-  //     this._snackBar.open(message, '', config);
-  //   }
-
-
   private triggerNotification(message: string, title: string, type: AlertType) {
+    const icon = this._alertIconMap[type]
     this._snackBar.openFromComponent(NotificationComponent, {
-      data: { title, message, type },
+      data: { title, message, type, icon },
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: type,
