@@ -35,8 +35,17 @@ export class NotificationService {
   public successNotification(message: string, title: string = 'Operation successful') {
     this.triggerNotification(message, title, 'success')
   }
+
   public errorNotification(message: string, title: string = 'An error ocurred') {
     this.triggerNotification(message, title, 'error')
+  }
+
+  public warningNotification(message: string, title: string = 'Be careful') {
+    this.triggerNotification(message, title, 'warning')
+  }
+
+  public infoNotification(message: string, title: string = 'Tip') {
+    this.triggerNotification(message, title, 'info')
   }
 }
 
